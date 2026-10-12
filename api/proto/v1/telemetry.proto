@@ -1,0 +1,20 @@
+syntax = "proto3";
+package telemetry.v1;
+
+option go_package = "telemetry-system/api/proto/v1;telemetryv1";
+
+message SensorData {
+  string sensor_name = 1;
+  int64 value = 2;
+  int64 timestamp_ms = 3;
+}
+
+message TransmitRequest {
+  SensorData data = 1;
+}
+
+message TransmitResponse {}
+
+service TelemetryService {
+  rpc Transmit(TransmitRequest) returns (TransmitResponse);
+}
